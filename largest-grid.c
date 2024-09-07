@@ -5,7 +5,7 @@
 #define COLS 20
 
 
-int largest_product_in_grid(){
+long long int largest_product_in_grid(){
 
     int given_numbers[ROWS][COLS] = {
         {8, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 8},
@@ -32,19 +32,29 @@ int largest_product_in_grid(){
 
     //calculate the largest product in diagonal
 
-    int number_elements = 4 , greatest_sum=0;
+    int number_elements = 4 ;
+    long long int greatest_sum=0;
 
-    for(int i=0;i<COLS;i++){
 
-        for(int j=0;j<COLS-number_elements;j++){
+    for(int h=0;h<COLS;h++){
 
-            int product = 1;
 
-            printf("The sum for the numbers ");
+        int available_elements = COLS - h;
+
+        if(available_elements<number_elements){
+            printf("Skipping the others because they have fewer items\n");
+            exit(1);
+        }
+
+        printf("for the diagonal %d second diagonal\n",h+1);
+
+        for(int i=0;i<COLS-number_elements+1 && i+h < COLS;i++){
+
+            long long int product = 1;
 
             for(int k=0;k<number_elements;k++){
-                printf(" %d ",given_numbers[j+k][j+k]);
-                product*= given_numbers[j+k][j+k];
+                printf(" %d ",given_numbers[i+k][i+k+h]);
+                product*= given_numbers[i+k][i+k+h];
             }
 
             printf(" is : %d \n",product);
@@ -52,7 +62,11 @@ int largest_product_in_grid(){
             if(product > greatest_sum){
                 greatest_sum = product;
             }
+        
         }
+
+        printf("\n");
+
     }
 
     printf("The largest product diagonally is : %d \n",greatest_sum);
@@ -62,7 +76,7 @@ int largest_product_in_grid(){
 
 int main(){
 
-    int test = largest_product_in_grid();
+    long long int test = largest_product_in_grid();
 
     return 0;
 
