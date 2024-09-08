@@ -39,20 +39,20 @@ long long int largest_product_in_grid(){
     for(int h=0;h<COLS;h++){
 
 
-        int available_elements = COLS - h;
+        int available_elements = COLS - h+1;
 
-        if(available_elements<number_elements){
-            printf("Skipping the others because they have fewer items\n");
-            exit(1);
-        }
+        // if(available_elements<number_elements){
+        //     printf("Skipping the others because they have fewer items\n");
+        //     exit(1);
+        // }
 
-        printf("for the diagonal %d second diagonal\n",h+1);
+        printf("for the diagonal %d second diagonal , with remaining elements: %d \n",h+1,available_elements);
 
         for(int i=0;i<COLS-number_elements+1 && i+h < COLS;i++){
 
             long long int product = 1;
 
-            for(int k=0;k<number_elements;k++){
+            for(int k=0;k<(available_elements>7?number_elements:available_elements-number_elements);k++){
                 printf(" %d ",given_numbers[i+k][i+k+h]);
                 product*= given_numbers[i+k][i+k+h];
             }
