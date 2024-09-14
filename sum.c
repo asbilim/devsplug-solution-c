@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #define NUM_COUNT 100
 #define DIGITS 50
-#define MAX_SUM_DIGITS 60  // To account for potential carry
+#define MAX_SUM_DIGITS 60  
 
 void add_large_numbers(char result[], const char number[]) {
     int carry = 0;
@@ -13,7 +14,7 @@ void add_large_numbers(char result[], const char number[]) {
         carry = sum / 10;
     }
     
-    // Handle any remaining carry
+
     for (int i = DIGITS - 1; i >= 0 && carry; i--) {
         int sum = (result[i] - '0') + carry;
         result[i] = (sum % 10) + '0';
